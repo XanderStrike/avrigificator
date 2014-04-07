@@ -2,7 +2,7 @@
 
 Simple script to get the average color of all frames in a video file.
 
-Requires ImageMagick and the RMagick gem.
+Requires ImageMagick, avconv (or ffmpeg) and the RMagick gem.
 
 Usage: `./avg.rb path/to/file.mp4`
 
