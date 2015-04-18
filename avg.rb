@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-
+require 'streamio-ffmpeg'
 require 'RMagick'
 include Magick
 
@@ -8,10 +8,15 @@ if ARGV.first.nil?
   exit
 end
 
-`rm frames/*`
+`rm frames/*` rescue nil
+
+# create movie object
+movie = FFMPEG::Movie.new(ARGV.first)
 
 # explode video into frames
-p `avconv -i "#{ARGV.first}" -r 1000 -f image2 frames/image-%07d.png`
+movie.duration.to_i.times do |x|
+  movie.screenshot("frames/#{x.to_s.rjust(5, "0")}.png", seek_time: x)
+end
 
 # get list of frames
 frames = `ls frames | grep png`.split("\n")
@@ -34,3 +39,6 @@ large = Image.new(512,512) {
 }
 
 large.write('output.png')
+
+# cleanup
+`rm frames/*` rescue nil
