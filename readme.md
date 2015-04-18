@@ -1,12 +1,19 @@
 #avrigificator
 
-Simple script to get the average color of all frames in a video file.
+### purpose
 
-Requires ImageMagick, avconv (or ffmpeg) and the RMagick gem.
+This script _averages_ a video into a single image.
 
-Usage: `./avg.rb path/to/file.mp4`
+### usage
 
-WARNING: This takes a while, and uses an absolute _shitload_ of HDD space during the process. A 5 minute, 720p video can be expected to take up several gigs. SSDs make it way faster.
+System requirements: ImageMagick, ffmpeg, sqlite3
 
+Gems: rmagick, sqlite3, streamio-ffmpeg
 
-TODO: multithreading
+Modify the values in `avg.rb` to suit your needs first.
+
+Run: `./avg.rb path/to/file.mp4`
+
+Result: `output.png`
+
+WARNING: Depending on your settings, this can take a very long time, and take a lot of hard drive space. Start with high numbers for the settings to get a feel for what they do.
